@@ -1,7 +1,23 @@
+import wollok.game.*
 import pepita.*
 import comidas.*
+import extras.*
+import direcciones.*
 
 describe "Tests de Pepita" {
+
+	method initialize(){
+		game.height(10)
+		game.width(10)
+
+		game.clear()
+
+		game.addVisual(pepita)
+	}
+
+	test "Pepita comienza con energia 100"{
+		assert.equals(100, pepita.energia())
+	}
 
 
 	test "Al comer pepita aumenta su energia" {

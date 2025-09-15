@@ -1,5 +1,15 @@
 import wollok.game.*
 import pepita.*
+import extras.*
+import comidas.*
+import direcciones.*
+import niveles.*
+
+
+//Framework INVERSIÓN DE CONTROL
+//Library = Biblioteca
+//Modelo.
+//BLOQUES -> Objeto; Conjunto de acciones; bloque.apply() <- ejecucion; se pueden guardar en cualquier parte
 
 program pepitaGame {
 	game.title("Pepita") 	//Valor por defecto "Wollok Game"
@@ -7,8 +17,22 @@ program pepitaGame {
 	game.width(10) 			//valor por defecto 5
 	game.cellSize(50) 		//valor por defecto 50
 	//search assets in assets folder, for example, for the background
-	//Valor por defecto game.ground("ground.png")
+	//Valor por defecto 
+	game.boardGround("fondo2.jpg")
+	//game.ground("suelo.png")
 	
+	nivel1.inicializar()
+
+	
+
+	/*
+	game.whenCollideDo(nido, {game.say(nido, "Bienvenida!")})
+	game.whenCollideDo(silvestre, {game.say(silvestre, "Te tengo!")})
+	game.whenCollideDo(silvestre, {game.say(pepita, "Oh no!")})
+	*/
+	//EL orden de agregar visuales IMPORTA! Siempre, el último, está encima.
 	//game.addVisual(pepita)
-	game.start()	
+
+	game.start()
 }
+
