@@ -20,6 +20,10 @@ object manzana {
 		game.removeVisual(self)
 	}
 
+	method queHagoConVos(alguien){
+		alguien.comerAca(self)
+	}
+
 }
 
 object alpiste {
@@ -35,6 +39,8 @@ object alpiste {
 		game.removeVisual(self)
 	}
 
-
+	method queHagoConVos(alguien){
+		alguien.comerAca(self)
+	}
 }
 

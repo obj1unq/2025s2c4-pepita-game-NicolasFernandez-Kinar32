@@ -8,6 +8,10 @@ object nido{
 
     method saludo() = "Bienvenido a casa"
 
+    method queHagoConVos(alguien){
+        alguien.ganaste()
+    }
+
     //method pepitaEstaEnLaCasa() = game.say(self, self.saludo())
 
 }
@@ -23,6 +27,11 @@ object silvestre{
     //if(presa.position().x() >= 3) { presa.position().x()} else { 3 }
 
     method atrapada() = "Gotcha!"
+
+    method queHagoConVos(alguien){
+        alguien.perder()
+        
+    }
 
 }
 

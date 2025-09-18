@@ -11,10 +11,12 @@ object pepita {
 	var energia = energiaInicial
 	const cazador = silvestre
 	const casa = nido
+	var atrapada = false
 	
 method inicializar(){
 	position = game.at(0,1)
 	energia = energiaInicial
+	atrapada = false
 }
 
 	method image(){
@@ -22,12 +24,17 @@ method inicializar(){
 	}
 
 	method estado(){
-		return if (self.estaSobre(cazador) || !self.puedeMover()){"gris"}
+		return if (atrapada || !self.puedeMover()){"gris"}
 		else if (self.estaSobre(casa)){"grande"}
 		else {"base"}
 	}
 
-	method puedeMover() = energia >= self.energiaNecesaria(1)
+	method puedeMover() = energia >= self.energiaNecesaria(1) && !self.estaSobre(cazador)
+
+	method teAtraparon(){
+		game.say(self, "Aaah, me atraparon")
+		self.perder()
+	}
 
 	method estaSobre(alguien) = position == alguien.position()
 	
@@ -40,9 +47,15 @@ method inicializar(){
 	}
 
 	method comerAca(){
-		const comida = self.loQueHayAca()
-		self.comer(comida)
-		comida.consumida()
+		try{
+			const comida = self.loQueHayAca()
+			self.comer(comida)
+			comida.consumida()
+
+		} catch e: Exception{
+			game.say(self, "No hay nada aca")  //console.println("")
+		}
+
 	}
 
 	method loQueHayAca() = game.uniqueCollider(self)
@@ -69,11 +82,6 @@ method inicializar(){
 
 	method perder(){
 		game.say(self, "Perdi!")
-		keyboard.r().onPressDo{
-			game.clear()
-			self.inicializar()
-			nivel1.inicializar()
-		}
 		game.schedule(2000, {game.stop()})
 	}
 
@@ -88,6 +96,25 @@ method inicializar(){
 	  game.addVisual(self)
 	}
 
-	method greetings() = "It's Pepita time!"
+	method encontraste(algo){
+		algo.queHagoConVos(self)
+	}
 
+	method ganaste(){
+		game.say(self, "ganaste")
+	}
+
+/*
+pensarlo como moverSiPuedeDerecha, izquierda, etc
+
+	method moverSiPuede(direccion){
+		const lastKnowPosition = self.position()
+		if(self.position().x().between(1, 9) && self.position().y().between(1, 9)){
+			self.mover(direccion)
+		} else{
+			position = lastKnowPosition
+		}
+	}
+*/
+	method greetings() = "It's Pepita time!"
 }
