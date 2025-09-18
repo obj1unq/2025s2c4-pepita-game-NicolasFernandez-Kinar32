@@ -14,11 +14,16 @@ object nivel1{
 
 		game.addVisual(pepita)
 
-		keyboard.up().onPressDo({pepita.mover(arriba)})         //se pueden sacar los parentesis
-		keyboard.down().onPressDo({pepita.mover(abajo)})
-		keyboard.right().onPressDo({pepita.mover(derecha)})
-		keyboard.left().onPressDo({pepita.mover(izquierda)})
-		keyboard.c().onPressDo({pepita.comerAca()})
+		keyboard.up().onPressDo		({if(pepita.position().y()<9){pepita.mover(arriba)}})
+		keyboard.down().onPressDo	({if(pepita.position().y()>=1){pepita.mover(abajo)}})
+		keyboard.right().onPressDo	({if(pepita.position().x()<9)pepita.mover(derecha)})
+		keyboard.left().onPressDo	({if(pepita.position().x()>=1)pepita.mover(izquierda)})
+		keyboard.c().onPressDo		({pepita.comerAca()})
+		keyboard.r().onPressDo({game.clear()
+								self.inicializar()
+								pepita.inicializar()})
+
+        game.onCollideDo(pepita, {algo => pepita.encontraste(algo)})
 
 		game.say(pepita, pepita.greetings())
 	}

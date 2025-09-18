@@ -5,16 +5,16 @@ import direcciones.*
 import niveles.*
 
 object pepita {
-	const posicionInicial = game.at(0,1)
+	const posicionInicial = game.at(0,0)
 	var property position = posicionInicial //
-	const energiaInicial = 100
+	const energiaInicial = 1000
 	var energia = energiaInicial
 	const cazador = silvestre
 	const casa = nido
 	var atrapada = false
 	
 method inicializar(){
-	position = game.at(0,1)
+	position = game.at(0,0)
 	energia = energiaInicial
 	atrapada = false
 }
@@ -82,7 +82,9 @@ method inicializar(){
 
 	method perder(){
 		game.say(self, "Perdi!")
-		game.schedule(2000, {game.stop()})
+		keyboard.r().onPressDo({game.clear()
+								nivel1.inicializar()
+								self.inicializar()})
 	}
 
 
