@@ -21,7 +21,7 @@ object manzana {
 	}
 
 	method queHagoConVos(alguien){
-		alguien.comerAca(self)
+		alguien.comerAca()
 	}
 
 }
@@ -40,7 +40,7 @@ object alpiste {
 	}
 
 	method queHagoConVos(alguien){
-		alguien.comerAca(self)
+		alguien.comerAca()
 	}
 }
 

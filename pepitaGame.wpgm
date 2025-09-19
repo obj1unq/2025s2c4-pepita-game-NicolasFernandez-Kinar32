@@ -23,13 +23,6 @@ program pepitaGame {
 	
 	nivel1.inicializar()
 
-	
-
-	/*
-	game.whenCollideDo(nido, {game.say(nido, "Bienvenida!")})
-	game.whenCollideDo(silvestre, {game.say(silvestre, "Te tengo!")})
-	game.whenCollideDo(silvestre, {game.say(pepita, "Oh no!")})
-	*/
 	//EL orden de agregar visuales IMPORTA! Siempre, el último, está encima.
 	//game.addVisual(pepita)
 

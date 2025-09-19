@@ -5,7 +5,7 @@ import direcciones.*
 import niveles.*
 
 object pepita {
-	const posicionInicial = game.at(0,0)
+	const posicionInicial = game.at(0,1)
 	var property position = posicionInicial //
 	const energiaInicial = 1000
 	var energia = energiaInicial
@@ -14,7 +14,7 @@ object pepita {
 	var atrapada = false
 	
 method inicializar(){
-	position = game.at(0,0)
+	position = game.at(0,1)
 	energia = energiaInicial
 	atrapada = false
 }
@@ -84,7 +84,8 @@ method inicializar(){
 		game.say(self, "Perdi!")
 		keyboard.r().onPressDo({game.clear()
 								nivel1.inicializar()
-								self.inicializar()})
+								self.inicializar()})  //lo dejo para probar cosas sin reiniciar todo, pero está mal acá
+		game.stop()
 	}
 
 
@@ -93,30 +94,26 @@ method inicializar(){
 	//	position = position.up(1)
 	//}
 
-	method redibujarse(){
-	  game.removeVisual(self)
-	  game.addVisual(self)
-	}
-
 	method encontraste(algo){
 		algo.queHagoConVos(self)
 	}
 
 	method ganaste(){
-		game.say(self, "ganaste")
+		game.say(self, "LLEGUE!")
+		game.schedule(2000, {game.stop()})
 	}
 
-/*
-pensarlo como moverSiPuedeDerecha, izquierda, etc
-
-	method moverSiPuede(direccion){
-		const lastKnowPosition = self.position()
-		if(self.position().x().between(1, 9) && self.position().y().between(1, 9)){
-			self.mover(direccion)
-		} else{
-			position = lastKnowPosition
-		}
+	method gravedad(){
+		if(self.position().y()>=1){
+			position = position.down(1)}
 	}
-*/
+
+
 	method greetings() = "It's Pepita time!"
+
+	method redibujarse(){
+	  game.removeVisual(self)
+	  game.addVisual(self)
+	}
+
 }

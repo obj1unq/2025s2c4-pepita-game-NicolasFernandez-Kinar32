@@ -10,6 +10,7 @@ object nido{
 
     method queHagoConVos(alguien){
         alguien.ganaste()
+        game.say(self, self.saludo())
     }
 
     //method pepitaEstaEnLaCasa() = game.say(self, self.saludo())

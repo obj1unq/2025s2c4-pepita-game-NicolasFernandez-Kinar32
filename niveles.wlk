@@ -13,18 +13,20 @@ object nivel1{
 		game.addVisual(alpiste)
 
 		game.addVisual(pepita)
+		game.say(pepita, pepita.greetings())
+
+		game.onTick(800, "caida", {pepita.gravedad()})
 
 		keyboard.up().onPressDo		({if(pepita.position().y()<9){pepita.mover(arriba)}})
 		keyboard.down().onPressDo	({if(pepita.position().y()>=1){pepita.mover(abajo)}})
 		keyboard.right().onPressDo	({if(pepita.position().x()<9)pepita.mover(derecha)})
 		keyboard.left().onPressDo	({if(pepita.position().x()>=1)pepita.mover(izquierda)})
-		keyboard.c().onPressDo		({pepita.comerAca()})
+		//keyboard.c().onPressDo		({pepita.comerAca()})
 		keyboard.r().onPressDo({game.clear()
 								self.inicializar()
 								pepita.inicializar()})
 
         game.onCollideDo(pepita, {algo => pepita.encontraste(algo)})
 
-		game.say(pepita, pepita.greetings())
 	}
 }
